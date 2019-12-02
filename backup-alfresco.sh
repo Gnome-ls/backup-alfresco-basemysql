@@ -1,6 +1,6 @@
 #!/bin/bash
 
-db_name="Backup_alfresco"
+back_alfresco="Backup_alfresco"
 Diario="/mnt/nas/Backup_alfesco/diario"
 Semanal="/mnt/nas/Backup_alfesco/semanal"
 Mensual="/mnt/nas/Backup_alfesco/mensual"
@@ -12,45 +12,46 @@ umask 177
 
 case $1 in
         Diario)
-                   echo "Iniciando backup diario $db_name"
+                   echo "Iniciando backup diario $back_alfresco"
                    #hacer el back up de file system
-                   _destino="/mnt/nas/Backup_alfesco/diario/$db_name("$date").tgz"
+                   _destino="/mnt/nas/Backup_alfesco/diario/$back_alfresco("$date").tgz"
                    tar cvfz $_destino $ruta_de_alfresco
-		   # Eliminar archivos que tengan mas de 7 dias
+		     # Eliminar archivos que tengan mas de 7 dias
+                   cd $Diario && rm $back_alfresco -mtime +7
                    #find $Diario -mtime +7 -exec rm {} \;
-                   #en este tengo duda  guardar en los
+                   #logs de alertas backup alfresco
                    echo -e "$(date +'%d-%b-%y  %r '):ALERT:Backup de Alfresco diaria Generada"    >>alfresco_Backup.log
 
  	;;
         Semanal)
-		   echo "Iniciando backup semanal $db_name"
+		   echo "Iniciando backup semanal $back_alfresco"
                    #hacer el back up de file system
-                   _destino="/mnt/nas/Backup_alfesco/semanal/$db_name("$date").tgz"
+                   _destino="/mnt/nas/Backup_alfesco/semanal/$back_alfresco("$date").tgz"
                    tar cvfz $_destino $ruta_de_alfresco
                    # Eliminar archivos que tengan mas de 30 dias
                    #find $Semanal -mtime +30 -exec rm {} \;
-                   #en este tengo duda  guardar en los
+                   #logs de alertas backup alfresco
                    echo -e "$(date +'%d-%b-%y  %r '):ALERT:Backup de Alfresco semanal Generada"    >>alfresco_Backup.log
  	;;
         Mensual)
-		   echo "Iniciando backup mensual $db_name"
+		   echo "Iniciando backup mensual $back_alfresco"
                    #hacer el back up de file system
-                   _destino="/mnt/nas/Backup_alfesco/mensual/$db_name("$date").tgz"
+                   _destino="/mnt/nas/Backup_alfesco/mensual/$back_alfresco("$date").tgz"
                    tar cvfz $_destino $ruta_de_alfresco
                    # Eliminar archivos que tengan mas de 365 dias
                    #find $Mensual -mtime +365 -exec rm {} \;
-                   #en este tengo duda  guardar en los
+                   #logs de alertas backup alfresco
                    echo -e "$(date +'%d-%b-%y  %r '):ALERT:Backup de Alfresco mensual Generada"    >>alfresco_Backup.log
 
 	;;
         Anual)
-                   echo "Iniciando backup anual  $db_name"
+                   echo "Iniciando backup anual  $back_alfresco"
                    #hacer el back up de file system
-                   _destino="/mnt/nas/Backup_alfesco/anual/$db_name("$date").tgz"
+                   _destino="/mnt/nas/Backup_alfesco/anual/$back_alfresco("$date").tgz"
                    tar cvfz $_destino $ruta_de_alfresco
                    # Eliminar archivos que tengan mas de 365 dias
                    #find $Anual -mtime +365 -exec rm {} \;
-                   #en este tengo duda  guardar en los
+                   #logs de alertas backup alfresco
                    echo -e "$(date +'%d-%b-%y  %r '):ALERT:Backup de Alfresco anual Generada"    >>alfresco_Backup.log
 
 
