@@ -18,7 +18,7 @@ case $1 in
 		# Dump database into SQL file
 		mysqldump --user=$user -p --password=$password $db_name >$Diario/$db_name-$date.sql
 		# Eliminar archivos que tengan mas de 7 dias
-		cd $Diario && rm $db_name -mtime +7 
+		cd $Diario && find $db_name* -mtime +7 -type f -exec rm	{} \; 
 		#find $Diario -mtime +7 -exec rm {} \;
 		#DB backup log
 		echo -e "$(date +'%d-%b-%y  %r '):ALERT:Backup de la base diaria Generada"    >>DB_Backup.log
@@ -29,7 +29,7 @@ case $1 in
 		mysqldump --user=$user -p --password=$password $db_name >$Semanal/$db_name-$date.sql
 		# Eliminar archivos que tengan mas de 30  dias
 		#find $Semanal/* -mtime +30 -exec rm {} \;
-		cd $Semanal && rm $db_name -mtime +7 
+		cd $Semanal && find $db_name* -mtime +30 -type f -exec rm {} \;
 		#DB backup log
 		echo -e "$(date +'%d-%b-%y  %r '):ALERT:Backup de la base Semanal Generada"    >>DB_Backu.log
 	;;
@@ -39,7 +39,7 @@ case $1 in
 		mysqldump --user=$user -p --password=$password $db_name >$Mensual/$db_name-$date.sql
 		# Eliminar archivos que tengan mas de 365 dias
 		#find $Mensual/* -mtime +365 -exec rm {} \;
-		cd $Mensual && rm $db_name -mtime +7 
+		cd $Mensual && find $db_name* -mtime +365 -type f -exec rm {} \;
 		#DB backup log
 		echo -e "$(date +'%d-%b-%y  %r '):ALERT:Backup  de la base Mensual  Generada"    >>DB_Backup.log
 	;;
@@ -48,8 +48,7 @@ case $1 in
 		# Dump database into SQL file
 		mysqldump --user=$user -p --password=$password $db_name >$Anual/$db_name-$date.sql
 		# Eliminar archivos que tengan mas de  dias
-		#find $Diario/* -mtime +7 -exec rm {} \;
-		cd $Anual && rm $db_name -mtime +7 
+		#cd $Anual && find $db_name* -mtime +365 -type f -exec rm {} \;
 		#DB backup log
 		#echo -e "$(date +'%d-%b-%y  %r '):ALERT:Backup de la base diaria Generada"    >>DB_Backup.log
 	;;
