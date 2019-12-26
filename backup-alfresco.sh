@@ -17,7 +17,7 @@ case $1 in
                    _destino="/mnt/nas/Backup_alfesco/diario/$back_alfresco("$date").tgz"
                    tar cvfz $_destino $ruta_de_alfresco
 		     # Eliminar archivos que tengan mas de 7 dias
-                   cd $Diario && rm $back_alfresco -mtime +7 
+                   cd $Diario && find $back_alfresco* -mtime +7 -type f -exec rm {} \;
                    #find $Diario -mtime +7 -exec rm {} \;
                    #logs de alertas backup alfresco
                    echo -e "$(date +'%d-%b-%y  %r '):ALERT:Backup de Alfresco diaria Generada"    >>alfresco_Backup.log
@@ -29,7 +29,7 @@ case $1 in
                    _destino="/mnt/nas/Backup_alfesco/semanal/$back_alfresco("$date").tgz"
                    tar cvfz $_destino $ruta_de_alfresco
                    # Eliminar archivos que tengan mas de 30 dias
-                   cd $Semanal && rm $back_alfresco -mtime +7
+                   cd $Semanal && find $back_alfresco* -mtime +30 -type f -exec rm {} \;
                    #find $Semanal -mtime +30 -exec rm {} \;
                    #logs de alertas backup alfresco
                    echo -e "$(date +'%d-%b-%y  %r '):ALERT:Backup de Alfresco semanal Generada"    >>alfresco_Backup.log
@@ -40,7 +40,7 @@ case $1 in
                    _destino="/mnt/nas/Backup_alfesco/mensual/$back_alfresco("$date").tgz"
                    tar cvfz $_destino $ruta_de_alfresco
                    # Eliminar archivos que tengan mas de 365 dias
-                   cd $Mensual && rm $back_alfresco -mtime +7
+                   cd $Mensual && find $back_alfresco* -mtime +365 -type f -exec rm {} \;
                    #find $Mensual -mtime +365 -exec rm {} \;
                    #logs de alertas backup alfresco
                    echo -e "$(date +'%d-%b-%y  %r '):ALERT:Backup de Alfresco mensual Generada"    >>alfresco_Backup.log
@@ -52,7 +52,7 @@ case $1 in
                    _destino="/mnt/nas/Backup_alfesco/anual/$back_alfresco("$date").tgz"
                    tar cvfz $_destino $ruta_de_alfresco
                    # Eliminar archivos que tengan mas de 365 dias
-                   cd $Anual && rm $back_alfresco -mtime +7
+                   cd $Anual && find $back_alfresco* -mtime +365 -type f -exec rm {} \;
                    #find $Anual -mtime +365 -exec rm {} \;
                    #logs de alertas backup alfresco
                    echo -e "$(date +'%d-%b-%y  %r '):ALERT:Backup de Alfresco anual Generada"    >>alfresco_Backup.log
