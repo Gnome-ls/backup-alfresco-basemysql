@@ -21,7 +21,7 @@ case $1 in
                    tar cvfz $_destino $ruta_de_alfresco
 		   # Eliminar archivos que tengan mas de 7 dias
 		   cd $Diario 
-		   archivos_eliminar(find $back_alfresco* -mtime +7)
+		   archivos_eliminar=(find $back_alfresco* -mtime +7)
 		   echo -e "$(date +'%d-%b-%y  %r '):ALERT:Archivos a eliminar $archivos_eliminar"    >>alfresco_Backup.log
                    cd $Diario && find $back_alfresco* -mtime +7 -type f -exec rm {} \;
                    echo -e "$(date +'%d-%b-%y  %r '):ALERT:Backup de Alfresco diaria Generada"    >>alfresco_Backup.log
@@ -37,7 +37,7 @@ case $1 in
                    tar cvfz $_destino $ruta_de_alfresco
                    # Eliminar archivos que tengan mas de 30 dias
 		   cd $Semanal
-		   archivos_eliminar(find $back_alfresco* -mtime +7)
+		   archivos_eliminar=(find $back_alfresco* -mtime +7)
 		   echo -e "$(date +'%d-%b-%y  %r '):ALERT:Archivos a eliminar $archivos_eliminar"    >>alfresco_Backup.log
                    cd $Semanal && find $back_alfresco* -mtime +30 -type f -exec rm {} \;
                    echo -e "$(date +'%d-%b-%y  %r '):ALERT:Backup de Alfresco semanal Generada"    >>alfresco_Backup.log
@@ -52,7 +52,7 @@ case $1 in
                    tar cvfz $_destino $ruta_de_alfresco
                    # Eliminar archivos que tengan mas de 365 dias
 		   cd $Mensual
-		   archivos_eliminar(find $back_alfresco* -mtime +7)
+		   archivos_eliminar=(find $back_alfresco* -mtime +7)
 		   echo -e "$(date +'%d-%b-%y  %r '):ALERT:Archivos a eliminar $archivos_eliminar"    >>alfresco_Backup.log
                    cd $Mensual && find $back_alfresco* -mtime +365 -type f -exec rm {} \;
                    echo -e "$(date +'%d-%b-%y  %r '):ALERT:Backup de Alfresco mensual Generada"    >>alfresco_Backup.log
@@ -68,7 +68,7 @@ case $1 in
                    tar cvfz $_destino $ruta_de_alfresco
                    # Eliminar archivos que tengan mas de 365 dias
 		   cd $Anual
-		   archivos_eliminar(find $back_alfresco* -mtime +7)
+		   archivos_eliminar=(find $back_alfresco* -mtime +7)
 		   echo -e "$(date +'%d-%b-%y  %r '):ALERT:Archivos a eliminar $archivos_eliminar"    >>alfresco_Backup.log
                    cd $Anual && find $back_alfresco* -mtime +365 -type f -exec rm {} \;
                    echo -e "$(date +'%d-%b-%y  %r '):ALERT:Backup de Alfresco anual Generada"    >>alfresco_Backup.log
