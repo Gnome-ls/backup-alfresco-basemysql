@@ -75,7 +75,7 @@ case $1 in
         Diario)
 		   cd $Diario
 		   echo -e "$(date +'%d-%b-%y  %r '):ALERT: Iniciando backup diario $back_alfresco"    >>alfresco_Backup.log
-                   #hacer el back up de file system se almacenara en Diario con el nombre de la base-fecha
+                   #hacer el back up de file system se almacenara en Diario con el nombre del backup-fecha
 		   echo -e "$(date +'%d-%b-%y  %r '):ALERT: Path $Diario"    >>alfresco_Backup.log
                    _destino="$Diario/$back_alfresco-$date.zip"
 		   echo -e "$(date +'%d-%b-%y  %r '):ALERT: Backup $_destino"    >>alfresco_Backup.log
@@ -117,7 +117,7 @@ case $1 in
         Semanal)
 		   cd $Semanal
 		   echo -e "$(date +'%d-%b-%y  %r '):ALERT: Iniciando backup Semanal $back_alfresco"    >>alfresco_Backup.log
-                   #hacer el back up de file system se almacenara en Semanal con el nombre de la base-fecha
+                   #hacer el back up de file system se almacenara en Semanal con el nombre del backup-fecha
 		   echo -e "$(date +'%d-%b-%y  %r '):ALERT: Path $Semanal"    >>alfresco_Backup.log
                    _destino="$Semanal/$back_alfresco-$date.zip"
 		   echo -e "$(date +'%d-%b-%y  %r '):ALERT: Backup $_destino"    >>alfresco_Backup.log
@@ -158,7 +158,7 @@ case $1 in
         Mensual)
 		   cd $Mensual
 		   echo -e "$(date +'%d-%b-%y  %r '):ALERT: Iniciando backup Mensual $back_alfresco"    >>alfresco_Backup.log
-                   #hacer el back up de file system se almacenara en Mensual con el nombre de la base-fecha
+                   #hacer el back up de file system se almacenara en Mensual con el nombre del backup-fecha
 		   echo -e "$(date +'%d-%b-%y  %r '):ALERT: Path $Mensual"    >>alfresco_Backup.log
                    _destino="$Mensual/$back_alfresco-$date.zip"
 		   echo -e "$(date +'%d-%b-%y  %r '):ALERT: Backup $_destino"    >>alfresco_Backup.log
@@ -199,7 +199,7 @@ case $1 in
         Anual)
 		   cd $Anual
 		   echo -e "$(date +'%d-%b-%y  %r '):ALERT: Iniciando backup Anual $back_alfresco"    >>alfresco_Backup.log
-                   #hacer el back up de file system se almacenara en Anual con el nombre de la base-fecha
+                   #hacer el back up de file system se almacenara en Anual con el nombre del backup-fecha
 		   echo -e "$(date +'%d-%b-%y  %r '):ALERT: Path $Anual"    >>alfresco_Backup.log
                    _destino="$Anual/$back_alfresco-$date.zip"
 		   echo -e "$(date +'%d-%b-%y  %r '):ALERT: Backup $_destino"    >>alfresco_Backup.log
