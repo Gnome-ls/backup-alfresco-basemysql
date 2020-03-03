@@ -10,7 +10,7 @@ Anual="/mnt/nas/Backup_alfesco/anual"
 date=$(date +"%d-%b-%Y")
 #ruta de alfresco productivo
 ruta_de_alfresco="/mnt/nas/alfresco"
-# Set default file permissions
+#Establecer permisos de archivo predeterminados
 umask 177
 #rutas de karina
 ##!/bin/bash
