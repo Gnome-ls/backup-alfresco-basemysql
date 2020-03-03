@@ -114,7 +114,7 @@ case $1 in
     ;;
     Semanal)
         echo "Iniciando backup Semanal $db_name"
-        # Dump de base de datos en archivo SQL, se almacenara en Diario con el nombre de la base-fecha
+        # Dump de base de datos en archivo SQL, se almacenara en Semanal con el nombre de la base-fecha
         mysqldump --user=$user -p --password=$password $db_name >$Semanal/$db_name-$date.sql
         # Eliminar archivos que tengan mas de 30  dias
         cd $Semanal && find $db_name* -mtime +30 -type f -exec rm {} \;
@@ -146,7 +146,7 @@ case $1 in
     ;;
     Mensual)
         echo "Iniciando backup Mensual $db_name"
-        # Dump de base de datos en archivo SQL, se almacenara en Diario con el nombre de la base-fecha
+        # Dump de base de datos en archivo SQL, se almacenara en Mensual con el nombre de la base-fecha
         mysqldump --user=$user -p --password=$password $db_name >$Mensual/$db_name-$date.sql
         # Eliminar archivos que tengan mas de 365 dias
         cd $Mensual && find $db_name* -mtime +365 -type f -exec rm {} \;
@@ -178,7 +178,7 @@ case $1 in
     ;;
     Anual)
         echo "Iniciando backup Anual $db_name"
-        # Dump database into SQL file
+        # Dump de base de datos en archivo SQL, se almacenara en Anual con el nombre de la base-fecha
         mysqldump --user=$user -p --password=$password $db_name >$Anual/$db_name-$date.sql
         # Eliminar archivos que tengan mas de  dias
         cd $Anual && find $db_name* -mtime +365 -type f -exec rm {} \;
