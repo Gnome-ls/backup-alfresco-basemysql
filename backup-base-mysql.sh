@@ -94,14 +94,14 @@ case $1 in
 	# En caso de no generarse, se generara un archivo.error mostrando el mensaje que no se genero
         if [ -f "$db_name-$date.sql" ] ; then 
                 echo -e "$(date +'%d-%b-%y  %r '):ALERT: Backup de la base diaria Generada"    >>DB_Backup.log
-		        # Peso maximo del archivo.log
+		# Peso maximo del archivo.log
                 MaxFileSize=2048
                 while true
                 do
-		            # Obtener el peso en bytes del archivo.log
+		     # Obtener el peso en bytes del archivo.log
                     file_size=`du -b DB_Backup.log | tr -s '\t' ' ' | cut -d' ' -f1`
-		            # Preguntamos si el archivo.log es mas grande en peso que MaxFileSize, movera el archivo.log 
-		            # a la carpeta log añadiendo la variable timestamp
+		    # Preguntamos si el archivo.log es mas grande en peso que MaxFileSize, movera el archivo.log 
+		    # a la carpeta log añadiendo la variable timestamp
                     if [ $file_size -gt $MaxFileSize ];then   
                         timestamp=`date +%s`
                         mv DB_Backup.log $Diario/log/DB_Backup.log.$timestamp
@@ -132,8 +132,8 @@ case $1 in
                 do
                     # Obtener el peso en bytes del archivo.log
                     file_size=`du -b DB_Backup.log | tr -s '\t' ' ' | cut -d' ' -f1`
-		            # Preguntamos si el archivo.log es mas grande en peso que MaxFileSize, movera el archivo.log 
-		            # a la carpeta log añadiendo la variable timestamp
+		    # Preguntamos si el archivo.log es mas grande en peso que MaxFileSize, movera el archivo.log 
+		    # a la carpeta log añadiendo la variable timestamp
                     if [ $file_size -gt $MaxFileSize ];then   
                         timestamp=`date +%s`
                         mv DB_Backup.log $Semanal/log/DB_Backup.log.$timestamp
@@ -158,14 +158,14 @@ case $1 in
 	# En caso de no generarse, se generara un archivo.error mostrando el mensaje que no se genero
         if [ -f "$db_name-$date.sql" ] ; then 
                 echo -e "$(date +'%d-%b-%y  %r '):ALERT: Backup de la base mensual Generada"    >>DB_Backup.log
-		        # Peso maximo del archivo.log
+		# Peso maximo del archivo.log
                 MaxFileSize=2048
                 while true
                 do
-		            # Obtener el peso en bytes del archivo.log
+		    # Obtener el peso en bytes del archivo.log
                     file_size=`du -b DB_Backup.log | tr -s '\t' ' ' | cut -d' ' -f1`
-		            # Preguntamos si el archivo.log es mas grande en peso que MaxFileSize, movera el archivo.log 
-		            # a la carpeta log añadiendo la variable timestamp
+		    # Preguntamos si el archivo.log es mas grande en peso que MaxFileSize, movera el archivo.log 
+		    # a la carpeta log añadiendo la variable timestamp
                     if [ $file_size -gt $MaxFileSize ];then   
                         timestamp=`date +%s`
                         mv DB_Backup.log $Mensual/log/DB_Backup.log.$timestamp
@@ -196,8 +196,8 @@ case $1 in
                 do
                     # Obtener el peso en bytes del archivo.log
                     file_size=`du -b DB_Backup.log | tr -s '\t' ' ' | cut -d' ' -f1`
-		            # Preguntamos si el archivo.log es mas grande en peso que MaxFileSize, movera el archivo.log 
-		            # a la carpeta log añadiendo la variable timestamp
+		    # Preguntamos si el archivo.log es mas grande en peso que MaxFileSize, movera el archivo.log 
+		    # a la carpeta log añadiendo la variable timestamp
                     if [ $file_size -gt $MaxFileSize ];then   
                         timestamp=`date +%s`
                         mv DB_Backup.log $Anual/log/DB_Backup.log.$timestamp
