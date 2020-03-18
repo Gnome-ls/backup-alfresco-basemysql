@@ -78,8 +78,11 @@ case $1 in
                    #hacer el back up de file system se almacenara en Diario con el nombre del backup-fecha
 		   echo -e "$(date +'%d-%b-%y  %r '):ALERT: Path $Diario"    >>alfresco_Backup.log
                    _destino="$Diario/$back_alfresco-$date.zip"
+		   _destinobd="$Diario/$back_alfresco-$date.sql"
 		   echo -e "$(date +'%d-%b-%y  %r '):ALERT: Backup $_destino"    >>alfresco_Backup.log
                    zip -r $_destino $ruta_de_alfresco
+		   #Dump de la base de datos de alfresco
+		   pg_dump --no-owner --dbname=postgresql://alfresco:admin.SEAGED.2017@localhost:5432/alfresco > $_destinobd
 		   # Eliminar archivos que tengan mas de 7 dias
                    cd $Diario && find $back_alfresco* -mtime +7 -type f -exec rm {} \;
 		   # Llamado de funcion de creacion de carpeta log
@@ -120,8 +123,11 @@ case $1 in
                    #hacer el back up de file system se almacenara en Semanal con el nombre del backup-fecha
 		   echo -e "$(date +'%d-%b-%y  %r '):ALERT: Path $Semanal"    >>alfresco_Backup.log
                    _destino="$Semanal/$back_alfresco-$date.zip"
+  	           _destinobd="$Semanal/$back_alfresco-$date.sql"
 		   echo -e "$(date +'%d-%b-%y  %r '):ALERT: Backup $_destino"    >>alfresco_Backup.log
                    zip -r $_destino $ruta_de_alfresco
+		   #Dump de la base de datos de alfresco
+                   pg_dump --no-owner --dbname=postgresql://alfresco:admin.SEAGED.2017@localhost:5432/alfresco > $_destinobd
                    # Eliminar archivos que tengan mas de 30 dias
                    cd $Semanal && find $back_alfresco* -mtime +30 -type f -exec rm {} \;
                    # Llamado de funcion de creacion de carpeta log
@@ -161,8 +167,11 @@ case $1 in
                    #hacer el back up de file system se almacenara en Mensual con el nombre del backup-fecha
 		   echo -e "$(date +'%d-%b-%y  %r '):ALERT: Path $Mensual"    >>alfresco_Backup.log
                    _destino="$Mensual/$back_alfresco-$date.zip"
+		   _destinobd="$Mensual/$back_alfresco-$date.sql"
 		   echo -e "$(date +'%d-%b-%y  %r '):ALERT: Backup $_destino"    >>alfresco_Backup.log
                    zip -r $_destino $ruta_de_alfresco
+		   #Dump de la base de datos de alfresco
+                   pg_dump --no-owner --dbname=postgresql://alfresco:admin.SEAGED.2017@localhost:5432/alfresco > $_destinobd
                    # Eliminar archivos que tengan mas de 365 dias
                    cd $Mensual && find $back_alfresco* -mtime +365 -type f -exec rm {} \;
                     # Llamado de funcion de creacion de carpeta log
@@ -202,8 +211,11 @@ case $1 in
                    #hacer el back up de file system se almacenara en Anual con el nombre del backup-fecha
 		   echo -e "$(date +'%d-%b-%y  %r '):ALERT: Path $Anual"    >>alfresco_Backup.log
                    _destino="$Anual/$back_alfresco-$date.zip"
+		   _destinobd="$Anual/$back_alfresco-$date.sql"
 		   echo -e "$(date +'%d-%b-%y  %r '):ALERT: Backup $_destino"    >>alfresco_Backup.log
                    zip -r $_destino $ruta_de_alfresco
+		   #Dump de la base de datos de alfresco
+                   pg_dump --no-owner --dbname=postgresql://alfresco:admin.SEAGED.2017@localhost:5432/alfresco > $_destinobd
                    # Eliminar archivos que tengan mas de 365 dias
                    cd $Anual && find $back_alfresco* -mtime +365 -type f -exec rm {} \;
                    # Llamado de funcion de creacion de carpeta log
@@ -237,3 +249,4 @@ case $1 in
 
 	;;
 esac
+
