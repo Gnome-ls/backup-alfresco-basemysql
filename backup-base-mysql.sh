@@ -78,9 +78,13 @@ else
     mkdir log
 fi
 }
-# Caso 1 diario
+#  Caso 1 diario
 case $1 in
     Diario)
+	#fecha=$(date +"%A")
+	#if [ $fecha != domingo ]; then
+	fecha=$(date +"%d")
+	if [ $fecha != 01 ]; then  
         echo "Iniciando backup Diario $db_name"
         # Dump de base de datos en archivo SQL, se almacenara en Diario con el nombre de la base-fecha
         mysqldump --user=$user -p --password=$password $db_name >$Diario/$db_name-$date.sql
@@ -98,7 +102,7 @@ case $1 in
                 MaxFileSize=2048
                 while true
                 do
-		     # Obtener el peso en bytes del archivo.log
+		    # Obtener el peso en bytes del archivo.log
                     file_size=`du -b DB_Backup.log | tr -s '\t' ' ' | cut -d' ' -f1`
 		    # Preguntamos si el archivo.log es mas grande en peso que MaxFileSize, movera el archivo.log 
 		    # a la carpeta log añadiendo la variable timestamp
@@ -111,10 +115,15 @@ case $1 in
             else 
                 echo -e "$(date +'%d-%b-%y  %r '):ALERT: Backup de la base diaria NO Generada"    >>DB_Backup.error
         fi 
+	else 
+		echo  "$(date +'%d-%b-%y  %r '):ALERT: Es domingo y no se hace nada :D "    #>>DB_Backup.log	
+	fi
     ;;
     Semanal)
+	fecha=$(date +"%d")
+	if [ $fecha != 01 ]; then 
         echo "Iniciando backup Semanal $db_name"
-        # Dump de base de datos en archivo SQL, se almacenara en Semanal con el nombre de la base-fecha
+        # Dump de base de datos en archivo SQL, se almacenara en Diario con el nombre de la base-fecha
         mysqldump --user=$user -p --password=$password $db_name >$Semanal/$db_name-$date.sql
         # Eliminar archivos que tengan mas de 30  dias
         cd $Semanal && find $db_name* -mtime +30 -type f -exec rm {} \;
@@ -126,7 +135,7 @@ case $1 in
 	# En caso de no generarse, se generara un archivo.error mostrando el mensaje que no se genero
         if [ -f "$db_name-$date.sql" ] ; then 
                 echo -e "$(date +'%d-%b-%y  %r '):ALERT: Backup de la base semanal Generada"    >>DB_Backup.log
-		        # Peso maximo del archivo.log
+		# Peso maximo del archivo.log
                 MaxFileSize=2048
                 while true
                 do
@@ -143,10 +152,16 @@ case $1 in
             else 
                 echo -e "$(date +'%d-%b-%y  %r '):ALERT: Backup de la base semanal NO Generada"    >>DB_Backup.error
         fi 
+	else 
+		echo  "$(date +'%d-%b-%y  %r '):ALERT: Es primero y no se hace nada :D "  
+	fi
     ;;
     Mensual)
+	#se coloca date d m para obtener el dia y el mes en numero
+	fecha=$(date +"%d-%m")
+	if [ $fecha != 01-01 ]; then 
         echo "Iniciando backup Mensual $db_name"
-        # Dump de base de datos en archivo SQL, se almacenara en Mensual con el nombre de la base-fecha
+        # Dump de base de datos en archivo SQL, se almacenara en Diario con el nombre de la base-fecha
         mysqldump --user=$user -p --password=$password $db_name >$Mensual/$db_name-$date.sql
         # Eliminar archivos que tengan mas de 365 dias
         cd $Mensual && find $db_name* -mtime +365 -type f -exec rm {} \;
@@ -175,10 +190,15 @@ case $1 in
             else 
                 echo -e "$(date +'%d-%b-%y  %r '):ALERT: Backup de la base mensual NO Generada"    >>DB_Backup.error
         fi 
+	else 
+		echo  "$(date +'%d-%b-%y  %r '):ALERT: Es primero y no se hace nada :D "  
+	fi
     ;;
     Anual)
+	#fecha=$(date +"%d")
+	#if [ $fecha != 01 ]; then 
         echo "Iniciando backup Anual $db_name"
-        # Dump de base de datos en archivo SQL, se almacenara en Anual con el nombre de la base-fecha
+        # Dump database into SQL file
         mysqldump --user=$user -p --password=$password $db_name >$Anual/$db_name-$date.sql
         # Eliminar archivos que tengan mas de  dias
         cd $Anual && find $db_name* -mtime +365 -type f -exec rm {} \;
