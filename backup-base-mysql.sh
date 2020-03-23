@@ -116,7 +116,7 @@ case $1 in
                 echo -e "$(date +'%d-%b-%y  %r '):ALERT: Backup de la base diaria NO Generada"    >>DB_Backup.error
         fi 
 	else 
-		echo  "$(date +'%d-%b-%y  %r '):ALERT: Es domingo y no se hace nada :D "    #>>DB_Backup.log	
+		echo  "$(date +'%d-%b-%y  %r '):ALERT: Es 01 del mes y no se hace nada :D "    #>>DB_Backup.log	
 	fi
     ;;
     Semanal)
@@ -153,7 +153,7 @@ case $1 in
                 echo -e "$(date +'%d-%b-%y  %r '):ALERT: Backup de la base semanal NO Generada"    >>DB_Backup.error
         fi 
 	else 
-		echo  "$(date +'%d-%b-%y  %r '):ALERT: Es primero y no se hace nada :D "  
+		echo  "$(date +'%d-%b-%y  %r '):ALERT: Es 01 del mes y no se hace nada :D "  
 	fi
     ;;
     Mensual)
@@ -191,7 +191,7 @@ case $1 in
                 echo -e "$(date +'%d-%b-%y  %r '):ALERT: Backup de la base mensual NO Generada"    >>DB_Backup.error
         fi 
 	else 
-		echo  "$(date +'%d-%b-%y  %r '):ALERT: Es primero y no se hace nada :D "  
+		echo  "$(date +'%d-%b-%y  %r '):ALERT: Es 01 de enero y no se hace nada :D "  
 	fi
     ;;
     Anual)
