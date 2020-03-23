@@ -118,7 +118,7 @@ case $1 in
 				echo -e "$(date +'%d-%b-%y  %r '):ALERT:Backup de alfresco diario NO Generada"    >>alfresco_Backup.error
 			fi
   	else 
-		echo  "$(date +'%d-%b-%y  %r '):ALERT: Es domingo y no se hace nada :D "    >>alfresco_Backup.log	
+		echo  "$(date +'%d-%b-%y  %r '):ALERT: Es 01 del mes y no se hace nada :D "    >>alfresco_Backup.log	
 	fi
 
 
@@ -168,7 +168,7 @@ case $1 in
 				echo -e "$(date +'%d-%b-%y  %r '):ALERT:Backup de alfresco semanal NO Generada"    >>alfresco_Backup.error
 			fi
 	else 
-		echo  "$(date +'%d-%b-%y  %r '):ALERT: Es primero y no se hace nada :D "  #>>alfresco_Backup.log
+		echo  "$(date +'%d-%b-%y  %r '):ALERT: Es 01 del mes y no se hace nada :D "  #>>alfresco_Backup.log
 	fi
 
 
@@ -220,7 +220,7 @@ case $1 in
 				echo -e "$(date +'%d-%b-%y  %r '):ALERT:Backup de alfresco mensual NO Generada"    >>alfresco_Backup.error
 			fi
 		else 
-		echo  "$(date +'%d-%b-%y  %r '):ALERT: Es primero y no se hace nada :D "   #>>alfresco_Backup.log
+		echo  "$(date +'%d-%b-%y  %r '):ALERT: Es primero de Enero y no se hace nada :D "   #>>alfresco_Backup.log
 		fi
 
 
