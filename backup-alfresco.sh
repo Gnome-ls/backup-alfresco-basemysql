@@ -88,13 +88,13 @@ case $1 in
 		   # Llamado de funcion de creacion de carpeta log
      		   carpeta_log_diario;
 		   # Generacion de archivo.log
-		   touch alfresco_Backup.log  
+		   touch alfresco_Backup.log
 		   # Hacemos un if para preguntar si  existe archivo comprimido para despues mostrar el mensaje en el archivo.log
 	           # En caso de no generarse, se generara un archivo.error mostrando el mensaje que no se genero
 
 
-			
-			if [ -f "$Diario/$back_alfresco-$date.zip" ] ; then 
+
+			if [ -f "$Diario/$back_alfresco-$date.zip" ] ; then
 				echo -e "$(date +'%d-%b-%y  %r '):ALERT:Backup de alfresco diario Generada"    >>alfresco_Backup.log
 				# Peso maximo del archivo.log
 				MaxFileSize=2048
@@ -102,17 +102,17 @@ case $1 in
 				do
 				 # Obtener el peso en bytes del archivo.log
 					file_size=`du -b alfresco_Backup.log | tr -s '\t' ' ' | cut -d' ' -f1`
-				 # Preguntamos si el archivo.log es mas grande en peso que MaxFileSize, movera el archivo.log 
+				 # Preguntamos si el archivo.log es mas grande en peso que MaxFileSize, movera el archivo.log
 		                 # a la carpeta log añadiendo la variable timestamp
-					if [ $file_size -gt $MaxFileSize ]; then   
+					if [ $file_size -gt $MaxFileSize ]; then
 						timestamp=`date +%s`
 						mv alfresco_Backup.log $Diario/log/alfresco_Backup.log.$timestamp
 						touch alfresco_Backup.log
 					fi
 				done
-			else 
+			else
 				echo -e "$(date +'%d-%b-%y  %r '):ALERT:Backup de alfresco diario NO Generada"    >>alfresco_Backup.error
-			fi 
+			fi
 
 
 
@@ -137,8 +137,8 @@ case $1 in
 		   # Hacemos un if para preguntar si  existe archivo comprimido para despues mostrar el mensaje en el archivo.log
 	           # En caso de no generarse, se generara un archivo.error mostrando el mensaje que no se genero
 
-			
-			if [ -f "$Semanal/$back_alfresco-$date.zip" ] ; then 
+
+			if [ -f "$Semanal/$back_alfresco-$date.zip" ] ; then
 				echo -e "$(date +'%d-%b-%y  %r '):ALERT:Backup de alfresco semanal Generada"    >>alfresco_Backup.log
 				# Peso maximo del archivo.log
 				MaxFileSize=2048
@@ -146,17 +146,17 @@ case $1 in
 				do
 					# Obtener el peso en bytes del archivo.log
 					file_size=`du -b alfresco_Backup.log | tr -s '\t' ' ' | cut -d' ' -f1`
-					# Preguntamos si el archivo.log es mas grande en peso que MaxFileSize, movera el archivo.log 
+					# Preguntamos si el archivo.log es mas grande en peso que MaxFileSize, movera el archivo.log
 		                        # a la carpeta log añadiendo la variable timestamp
-					if [ $file_size -gt $MaxFileSize ]; then   
+					if [ $file_size -gt $MaxFileSize ]; then
 						timestamp=`date +%s`
 						mv alfresco_Backup.log $Semanal/log/alfresco_Backup.log.$timestamp
 						touch alfresco_Backup.log
 					fi
 				done
-			else 
+			else
 				echo -e "$(date +'%d-%b-%y  %r '):ALERT:Backup de alfresco semanal NO Generada"    >>alfresco_Backup.error
-			fi               
+			fi
 
 
 
@@ -177,13 +177,13 @@ case $1 in
                     # Llamado de funcion de creacion de carpeta log
 	           carpeta_log_mensual;
 		   # Generacion de archivo.log
-	           touch alfresco_Backup.log  
+	           touch alfresco_Backup.log
         # Hacemos un if para preguntar si el dump existe para despues mostrar el mensaje en el archivo.log
 	# En caso de no generarse, se generara un archivo.error mostrando el mensaje que no se genero
 
 
-		
-			if [ -f "$Mensual/$back_alfresco-$date.zip" ] ; then 
+
+			if [ -f "$Mensual/$back_alfresco-$date.zip" ] ; then
 				echo -e "$(date +'%d-%b-%y  %r '):ALERT:Backup de alfresco mensual Generada"    >>alfresco_Backup.log
 				# Peso maximo del archivo.log
 				MaxFileSize=2048
@@ -191,17 +191,17 @@ case $1 in
 				do
 					  # Obtener el peso en bytes del archivo.log
 					file_size=`du -b alfresco_Backup.log | tr -s '\t' ' ' | cut -d' ' -f1`
-					 # Preguntamos si el archivo.log es mas grande en peso que MaxFileSize, movera el archivo.log 
+					 # Preguntamos si el archivo.log es mas grande en peso que MaxFileSize, movera el archivo.log
 		                         # a la carpeta log añadiendo la variable timestamp
-					if [ $file_size -gt $MaxFileSize ]; then   
+					if [ $file_size -gt $MaxFileSize ]; then
 						timestamp=`date +%s`
 						mv alfresco_Backup.log $Mensual/log/alfresco_Backup.log.$timestamp
 						touch alfresco_Backup.log
 					fi
 				done
-			else 
+			else
 				echo -e "$(date +'%d-%b-%y  %r '):ALERT:Backup de alfresco mensual NO Generada"    >>alfresco_Backup.error
-			fi 
+			fi
 
 
 	;;
@@ -224,8 +224,8 @@ case $1 in
 	           touch alfresco_Backup.log
 		   	# Hacemos un if para preguntar si el dump existe para despues mostrar el mensaje en el archivo.log
 	                # En caso de no generarse, se generara un archivo.error mostrando el mensaje que no se genero
-           
-			if [ -f "$Anual/$back_alfresco-$date.zip" ] ; then 
+
+			if [ -f "$Anual/$back_alfresco-$date.zip" ] ; then
 				echo -e "$(date +'%d-%b-%y  %r '):ALERT:Backup de alfresco anual Generada"    >>alfresco_Backup.log
 				# Peso maximo del archivo.log
 				MaxFileSize=2048
@@ -233,20 +233,19 @@ case $1 in
 				do
 					 # Obtener el peso en bytes del archivo.log
 					file_size=`du -b alfresco_Backup.log | tr -s '\t' ' ' | cut -d' ' -f1`
-		    # Preguntamos si el archivo.log es mas grande en peso que MaxFileSize, movera el archivo.log 
-		    # a la carpeta log añadiendo la variable timestamp	
-				 
-					if [ $file_size -gt $MaxFileSize ]; then   
+		    # Preguntamos si el archivo.log es mas grande en peso que MaxFileSize, movera el archivo.log
+		    # a la carpeta log añadiendo la variable timestamp
+
+					if [ $file_size -gt $MaxFileSize ]; then
 						timestamp=`date +%s`
 						mv alfresco_Backup.log $Anual/log/alfresco_Backup.log.$timestamp
 						touch alfresco_Backup.log
 					fi
 				done
-			else 
+			else
 				echo -e "$(date +'%d-%b-%y  %r '):ALERT:Backup de alfresco anual NO Generada"    >>alfresco_Backup.error
-			fi                   
+			fi
 
 
 	;;
 esac
-
