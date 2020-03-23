@@ -73,6 +73,10 @@ fi
 # Caso 1 diario
 case $1 in
         Diario)
+	#fecha=$(date +"%A")
+	#if [ $fecha != domingo ]; then
+	fecha=$(date +"%d")
+	if [ $fecha != 01 ]; then 
 		   cd $Diario
 		   echo -e "$(date +'%d-%b-%y  %r '):ALERT: Iniciando backup diario $back_alfresco"    >>alfresco_Backup.log
                    #hacer el back up de file system se almacenara en Diario con el nombre del backup-fecha
@@ -113,11 +117,17 @@ case $1 in
 			else
 				echo -e "$(date +'%d-%b-%y  %r '):ALERT:Backup de alfresco diario NO Generada"    >>alfresco_Backup.error
 			fi
-
+  	else 
+		echo  "$(date +'%d-%b-%y  %r '):ALERT: Es domingo y no se hace nada :D "    >>alfresco_Backup.log	
+	fi
 
 
  	;;
         Semanal)
+	
+	fecha=$(date +"%d")
+	if [ $fecha != 01 ]; then 
+        
 		   cd $Semanal
 		   echo -e "$(date +'%d-%b-%y  %r '):ALERT: Iniciando backup Semanal $back_alfresco"    >>alfresco_Backup.log
                    #hacer el back up de file system se almacenara en Semanal con el nombre del backup-fecha
@@ -157,11 +167,18 @@ case $1 in
 			else
 				echo -e "$(date +'%d-%b-%y  %r '):ALERT:Backup de alfresco semanal NO Generada"    >>alfresco_Backup.error
 			fi
-
+	else 
+		echo  "$(date +'%d-%b-%y  %r '):ALERT: Es primero y no se hace nada :D "  #>>alfresco_Backup.log
+	fi
 
 
  	;;
         Mensual)
+	
+	#se coloca date d m para obtener el dia y el mes en numero
+	fecha=$(date +"%d-%m")
+	if [ $fecha != 01-01 ]; then 
+	
 		   cd $Mensual
 		   echo -e "$(date +'%d-%b-%y  %r '):ALERT: Iniciando backup Mensual $back_alfresco"    >>alfresco_Backup.log
                    #hacer el back up de file system se almacenara en Mensual con el nombre del backup-fecha
@@ -202,6 +219,9 @@ case $1 in
 			else
 				echo -e "$(date +'%d-%b-%y  %r '):ALERT:Backup de alfresco mensual NO Generada"    >>alfresco_Backup.error
 			fi
+		else 
+		echo  "$(date +'%d-%b-%y  %r '):ALERT: Es primero y no se hace nada :D "   #>>alfresco_Backup.log
+		fi
 
 
 	;;
