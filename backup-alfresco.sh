@@ -125,8 +125,8 @@ case $1 in
  	;;
         Semanal)
 	
-	fecha=$(date +"%d")
-	if [ $fecha != 01 ]; then 
+	fecha=$(date +"%d-%A")
+	if [ $fecha != 01-domingo ]; then
         
 		   cd $Semanal
 		   echo -e "$(date +'%d-%b-%y  %r '):ALERT: Iniciando backup Semanal $back_alfresco"    >>alfresco_Backup.log
@@ -168,7 +168,8 @@ case $1 in
 				echo -e "$(date +'%d-%b-%y  %r '):ALERT:Backup de alfresco semanal NO Generada"    >>alfresco_Backup.error
 			fi
 	else 
-		echo  "$(date +'%d-%b-%y  %r '):ALERT: Es 01 del mes y no se hace nada :D "  #>>alfresco_Backup.log
+		echo  "$(date +'%d-%b-%y  %r '):ALERT: Es Domingo primero del mes y no se hace nada :D " 
+	fi
 	fi
 
 
