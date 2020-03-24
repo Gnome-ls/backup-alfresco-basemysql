@@ -170,7 +170,7 @@ case $1 in
 	else 
 		echo  "$(date +'%d-%b-%y  %r '):ALERT: Es Domingo primero del mes y no se hace nada :D " 
 	fi
-	fi
+	
 
 
  	;;
