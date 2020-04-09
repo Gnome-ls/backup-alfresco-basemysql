@@ -104,7 +104,7 @@ case $1 in
     fi
     # Peso maximo del archivo.log
     MaxFileSize=2048
-        while true
+        while true 
         do
             # Obtener el peso en bytes del archivo.log
             file_size=`du -b DB_Backup.log | tr -s '\t' ' ' | cut -d' ' -f1`
@@ -143,7 +143,7 @@ case $1 in
     fi
     # Peso maximo del archivo.log
     MaxFileSize=2048
-        while true
+        while true 
         do
             # Obtener el peso en bytes del archivo.log
             file_size=`du -b DB_Backup.log | tr -s '\t' ' ' | cut -d' ' -f1`
@@ -183,7 +183,7 @@ case $1 in
     fi
     # Peso maximo del archivo.log
     MaxFileSize=2048
-        while true
+        while true 
         do
             # Obtener el peso en bytes del archivo.log
             file_size=`du -b DB_Backup.log | tr -s '\t' ' ' | cut -d' ' -f1`
@@ -217,7 +217,7 @@ case $1 in
         fi 
         # Peso maximo del archivo.log
         MaxFileSize=2048
-        while true
+        while true 
         do
             # Obtener el peso en bytes del archivo.log
             file_size=`du -b DB_Backup.log | tr -s '\t' ' ' | cut -d' ' -f1`
