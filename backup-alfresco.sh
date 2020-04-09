@@ -100,26 +100,28 @@ case $1 in
 
 			if [ -f "$Diario/$back_alfresco-$date.zip" ] ; then
 				echo -e "$(date +'%d-%b-%y  %r '):ALERT:Backup de alfresco diario Generada"    >>alfresco_Backup.log
-				# Peso maximo del archivo.log
-				MaxFileSize=2048
-				while true
-				do
-				 # Obtener el peso en bytes del archivo.log
-					file_size=`du -b alfresco_Backup.log | tr -s '\t' ' ' | cut -d' ' -f1`
-				 # Preguntamos si el archivo.log es mas grande en peso que MaxFileSize, movera el archivo.log
-		                 # a la carpeta log añadiendo la variable timestamp
-					if [ $file_size -gt $MaxFileSize ]; then
-						timestamp=`date +%s`
-						mv alfresco_Backup.log $Diario/log/alfresco_Backup.log.$timestamp
-						touch alfresco_Backup.log
-					fi
-				done
+				
 			else
 				echo -e "$(date +'%d-%b-%y  %r '):ALERT:Backup de alfresco diario NO Generada"    >>alfresco_Backup.error
 			fi
   	else 
 		echo  "$(date +'%d-%b-%y  %r '):ALERT: Es 01 del mes y no se hace nada :D "    >>alfresco_Backup.log	
 	fi
+				MaxFileSize=2048
+        while true 
+        do
+            # Obtener el peso en bytes del archivo.log
+            file_size=`du -b alfresco_Backup.log | tr -s '\t' ' ' | cut -d' ' -f1`
+                # Preguntamos si el archivo.log es mas grande en peso que MaxFileSize, movera el archivo.log 
+                # a la carpeta log añadiendo la variable timestamp
+                if [ $file_size -gt $MaxFileSize ];then 
+                    timestamp=`date +%s`
+                    mv $Diario/alfresco_Backup.log $Diario/log/alfresco_Backup.log.$timestamp 
+                    cd $Diario && touch alfresco_Backup.log 
+                else
+                    break 
+                fi
+        done
 
 
  	;;
