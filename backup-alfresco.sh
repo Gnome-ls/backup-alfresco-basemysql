@@ -152,26 +152,29 @@ case $1 in
 
 			if [ -f "$Semanal/$back_alfresco-$date.zip" ] ; then
 				echo -e "$(date +'%d-%b-%y  %r '):ALERT:Backup de alfresco semanal Generada"    >>alfresco_Backup.log
-				# Peso maximo del archivo.log
-				MaxFileSize=2048
-				while true
-				do
-					# Obtener el peso en bytes del archivo.log
-					file_size=`du -b alfresco_Backup.log | tr -s '\t' ' ' | cut -d' ' -f1`
-					# Preguntamos si el archivo.log es mas grande en peso que MaxFileSize, movera el archivo.log
-		                        # a la carpeta log añadiendo la variable timestamp
-					if [ $file_size -gt $MaxFileSize ]; then
-						timestamp=`date +%s`
-						mv alfresco_Backup.log $Semanal/log/alfresco_Backup.log.$timestamp
-						touch alfresco_Backup.log
-					fi
-				done
+				
 			else
 				echo -e "$(date +'%d-%b-%y  %r '):ALERT:Backup de alfresco semanal NO Generada"    >>alfresco_Backup.error
 			fi
 	else 
 		echo  "$(date +'%d-%b-%y  %r '):ALERT: Es Domingo primero del mes y no se hace nada :D " 
 	fi
+	# Peso maximo del archivo.log
+				MaxFileSize=2048
+				while true
+				do
+				 # Obtener el peso en bytes del archivo.log
+         	   file_size=`du -b alfresco_Backup.log | tr -s '\t' ' ' | cut -d' ' -f1`
+                # Preguntamos si el archivo.log es mas grande en peso que MaxFileSize, movera el archivo.log 
+                # a la carpeta log añadiendo la variable timestamp
+                if [ $file_size -gt $MaxFileSize ];then 
+                    timestamp=`date +%s`
+                    mv $Semanal/alfresco_Backup.log $Semanal/log/alfresco_Backup.log.$timestamp 
+                    cd $Semanal && touch alfresco_Backup.log 
+                else
+                    break 
+                fi
+        done
 	
 
 
@@ -205,7 +208,14 @@ case $1 in
 
 			if [ -f "$Mensual/$back_alfresco-$date.zip" ] ; then
 				echo -e "$(date +'%d-%b-%y  %r '):ALERT:Backup de alfresco mensual Generada"    >>alfresco_Backup.log
-				# Peso maximo del archivo.log
+				
+			else
+				echo -e "$(date +'%d-%b-%y  %r '):ALERT:Backup de alfresco mensual NO Generada"    >>alfresco_Backup.error
+			fi
+		else 
+		echo  "$(date +'%d-%b-%y  %r '):ALERT: Es primero de Enero y no se hace nada :D "   #>>alfresco_Backup.log
+		fi
+# Peso maximo del archivo.log
 				MaxFileSize=2048
 				while true
 				do
@@ -215,17 +225,12 @@ case $1 in
 		                         # a la carpeta log añadiendo la variable timestamp
 					if [ $file_size -gt $MaxFileSize ]; then
 						timestamp=`date +%s`
-						mv alfresco_Backup.log $Mensual/log/alfresco_Backup.log.$timestamp
-						touch alfresco_Backup.log
-					fi
-				done
-			else
-				echo -e "$(date +'%d-%b-%y  %r '):ALERT:Backup de alfresco mensual NO Generada"    >>alfresco_Backup.error
-			fi
-		else 
-		echo  "$(date +'%d-%b-%y  %r '):ALERT: Es primero de Enero y no se hace nada :D "   #>>alfresco_Backup.log
-		fi
-
+						 mv $Mensual/alfresco_Backup.log $Mensual/log/alfresco_Backup.log.$timestamp 
+                    				 cd $Mensual && touch alfresco_Backup.log 
+					 else
+                    break 
+                fi
+        done
 
 	;;
         Anual)
@@ -250,7 +255,11 @@ case $1 in
 
 			if [ -f "$Anual/$back_alfresco-$date.zip" ] ; then
 				echo -e "$(date +'%d-%b-%y  %r '):ALERT:Backup de alfresco anual Generada"    >>alfresco_Backup.log
-				# Peso maximo del archivo.log
+				
+			else
+				echo -e "$(date +'%d-%b-%y  %r '):ALERT:Backup de alfresco anual NO Generada"    >>alfresco_Backup.error
+			fi
+# Peso maximo del archivo.log
 				MaxFileSize=2048
 				while true
 				do
@@ -258,17 +267,14 @@ case $1 in
 					file_size=`du -b alfresco_Backup.log | tr -s '\t' ' ' | cut -d' ' -f1`
 		    # Preguntamos si el archivo.log es mas grande en peso que MaxFileSize, movera el archivo.log
 		    # a la carpeta log añadiendo la variable timestamp
-
 					if [ $file_size -gt $MaxFileSize ]; then
 						timestamp=`date +%s`
-						mv alfresco_Backup.log $Anual/log/alfresco_Backup.log.$timestamp
-						touch alfresco_Backup.log
-					fi
-				done
-			else
-				echo -e "$(date +'%d-%b-%y  %r '):ALERT:Backup de alfresco anual NO Generada"    >>alfresco_Backup.error
-			fi
-
+						mv $Anual/alfresco_Backup.log $Anual/log/alfresco_Backup.log.$timestamp
+                    				cd $Anual && touch alfresco_Backup.log
+                else
+                    break
+                fi
+        done
 
 	;;
 esac
